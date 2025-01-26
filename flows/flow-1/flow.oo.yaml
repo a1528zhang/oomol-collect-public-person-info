@@ -1,0 +1,10 @@
+nodes:
+  - task: self::collect-person-info
+    title: "Collect Person Info #1"
+    node_id: collect-person-info#1
+    inputs_from:
+      - handle: username
+        value: Nora.
+      - handle: report_dir
+        value: /oomol-driver/oomol-storage
+    icon: ":twemoji:detective:"

@@ -1,0 +1,12 @@
+{
+  "nodes": {
+    "collect-person-info#1": {
+      "rfNode": {
+        "position": {
+          "x": 391,
+          "y": 160
+        }
+      }
+    }
+  }
+}

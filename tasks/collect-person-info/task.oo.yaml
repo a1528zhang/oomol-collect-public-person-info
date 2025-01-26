@@ -1,0 +1,19 @@
+executor:
+  name: python
+  options:
+    entry: __init__.py
+inputs_def:
+  - handle: username
+    json_schema:
+      type: string
+  - handle: report_dir
+    json_schema:
+      type: string
+      ui:widget: dir
+outputs_def:
+  - handle: report_path
+    json_schema:
+      type: string
+      ui:widget: file
+title: Collect Person Info
+icon: ":twemoji:detective:"

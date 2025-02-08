@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
@@ -9,4 +9,5 @@ icon: ":twemoji:detective:currentColor:"
 name: collect-public-person-info
 description: Collect public info by username.
 displayName: Collect Public Person Info
+releaseNotes: support short report & json report
 repository: https://github.com/a1528zhang/oomol-collect-public-person-info

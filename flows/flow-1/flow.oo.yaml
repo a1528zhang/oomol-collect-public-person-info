@@ -4,7 +4,7 @@ nodes:
     node_id: collect-person-info#1
     inputs_from:
       - handle: username
-        value: Nora.
+        value: Trump
       - handle: report_dir
         value: /oomol-driver/oomol-storage
     icon: ":twemoji:detective:"

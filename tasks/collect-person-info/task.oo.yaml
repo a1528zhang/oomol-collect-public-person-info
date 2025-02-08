@@ -15,5 +15,11 @@ outputs_def:
     json_schema:
       type: string
       ui:widget: file
+  - handle: json_report
+    json_schema:
+      type: string
+  - handle: short_report
+    json_schema:
+      type: string
 title: Collect Person Info
 icon: ":twemoji:detective:"

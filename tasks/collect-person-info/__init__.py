@@ -1,5 +1,8 @@
+import json
 from os import path
-from maigret.report import generate_report_context, save_pdf_report
+from maigret.notify import QueryStatus
+from maigret.report import generate_report_context, save_pdf_report, get_plaintext_report
+from maigret.types import QueryResultWrapper
 from oocana import Context
 import logging
 import maigret
@@ -20,6 +23,29 @@ def setup_logger(log_level, name):
     logger = logging.getLogger(name)
     logger.setLevel(log_level)
     return logger
+
+def getJsonResult(results: QueryResultWrapper):
+    all_json = {}
+
+    for sitename in results:
+        site_result = results[sitename]
+        if not site_result or not site_result.get("status"):
+            continue
+
+        if site_result["status"].status != QueryStatus.CLAIMED:
+            continue
+
+        data = dict(site_result)
+        data["status"] = data["status"].json()
+        data["site"] = data["site"].json
+        for field in ["future", "checker"]:
+            if field in data:
+                del data[field]
+
+        all_json[sitename] = data
+    j = json.dumps(all_json, indent = 2)
+    return j
+
 
 async def main(params: dict, context: Context):
     username = params["username"]
@@ -48,4 +74,8 @@ async def main(params: dict, context: Context):
     filename = report_filepath_tpl.format(username=username, postfix='.pdf')
     save_pdf_report(filename, report_context)
 
-    return { "report_path": report_filepath_tpl }
+    short_report = get_plaintext_report(report_context)
+
+    json_report = getJsonResult(results)
+
+    return { "report_path": report_filepath_tpl, "short_report": short_report, "json_report": json_report}
